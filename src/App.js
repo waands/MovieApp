@@ -1,10 +1,11 @@
 import React from 'react'
-import Movie from './components/Movie'
+import Movie from './pages/Movie'
+import Home from './pages/Home'
 
 function App() {
   return (
     <div>
-      <Movie/>
+      <Home/>
     </div>
   )
 }
