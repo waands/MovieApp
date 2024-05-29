@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import tmdbApi from "../services/tmdbApi";
 
-const useFetchMovies = (fetchFunction, query) => {
-  const [movies, setMovies] = useState([]);
+const useFetchMoviesDetails = (movieId) => {
+  const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -9,9 +10,9 @@ const useFetchMovies = (fetchFunction, query) => {
     const fetchMovies = async () => {
       try {
         setLoading(true);
-        const data = await fetchFunction(query);
-        setMovies(data);
-        setError(null);
+        const response = await tmdbApi.get(`/movie/${movieId}`);
+        console.log("data", response.data);
+        setMovie(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -20,11 +21,11 @@ const useFetchMovies = (fetchFunction, query) => {
       }
     };
 
-    if (fetchFunction) {
+    if (movieId) {
       fetchMovies();
     }
-  }, [fetchFunction, query]);
-  return { movies, loading, error };
+  }, [movieId]);
+  return { movie, loading, error };
 };
 
-export default useFetchMovies;
+export default useFetchMoviesDetails;

@@ -7,6 +7,7 @@ const tmdbApi = axios.create({
   baseURL: BASE_URL,
   params: {
     api_key: API_KEY,
+    language: 'pt-BR',
   },
 });
 
@@ -30,8 +31,9 @@ export const searchMovies = async (query) => {
     });
     //console.log("data.results",query, " ", data.results);
     const sortedResults = data.results.sort((a, b) => b.popularity - a.popularity);
+    const topFiveResults = sortedResults.slice(0, 8);
 
-    return sortedResults;
+    return topFiveResults;
   } catch (error) {
     console.error(error);
     throw error;
