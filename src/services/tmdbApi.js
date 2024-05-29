@@ -21,3 +21,21 @@ export const getPopularMovies = async () => {
   }
 };
 
+export const searchMovies = async (query) => {
+  try {
+    const { data } = await tmdbApi.get('/search/movie', {
+      params: {
+        query,
+      },
+    });
+    //console.log("data.results",query, " ", data.results);
+    const sortedResults = data.results.sort((a, b) => b.popularity - a.popularity);
+
+    return sortedResults;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export default tmdbApi;

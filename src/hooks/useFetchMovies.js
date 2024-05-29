@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { getPopularMovies } from "../services/tmdbApi";
 
-const useFetchMovies = (fetchFunction) => {
+const useFetchMovies = (fetchFunction, query) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setLoading(true);
       try {
-        const data = await fetchFunction();
+        const data = await fetchFunction(query);
         setMovies(data);
+        setError(null);
       } catch (error) {
         setError(error);
       } finally {
@@ -18,8 +20,11 @@ const useFetchMovies = (fetchFunction) => {
       }
     };
 
-    fetchMovies();
-  }, []);
+    if (fetchFunction) {
+      fetchMovies();
+    }
+
+  }, [fetchFunction, query]);
   return { movies, loading, error };
 };
 
