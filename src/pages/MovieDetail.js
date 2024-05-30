@@ -15,7 +15,7 @@ const MovieDetailPage = () => {
   if (!movie) return <p>No movie found</p>;
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#303243] from-65% to-[#15151D]  overflow-hidden">
       <div className="relative w-full h-100">
         <img
           className="absolute inset-0 w-full h-100 blur-3xl brightness-50 saturate-50"
@@ -33,7 +33,7 @@ const MovieDetailPage = () => {
             alt={movie.title}
           />
         </div>
-        <div className="text-white flex flex-col justify-center w-fuull md:w-2/3">
+        <div className="text-white flex flex-col justify-center w-ful md:w-2/3">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">{movie.title}</h1>
           <p className="mb-4">{movie.overview}</p>
           <p className="mb-2">

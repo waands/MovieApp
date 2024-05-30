@@ -8,7 +8,8 @@ import { Container } from '@mui/material'
 function App() {
   return (
     <Router>
-      <div>
+      <div className="bg-gradient-to-b from-[#303243] from-65% to-[#15151D] lg:bg-[#ffffff] lg:bg-none">
+
         <Container>
           <Navbar/>
           <Routes>
