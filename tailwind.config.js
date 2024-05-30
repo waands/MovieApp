@@ -35,7 +35,19 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      backgroundImage: theme => ({
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-linear': 'linear-gradient(var(--tw-gradient-angle), var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
+      })
+    },
+  },
+  variants: {
+    extend: {
+      backgroundImage: ['hover', 'focus'],
+      backdropBlur: ['hover', 'focus'],
+    }
   },
   plugins: [],
 }

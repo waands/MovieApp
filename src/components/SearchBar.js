@@ -29,7 +29,7 @@ const SearchBar = () => {
       />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      <ul className="absolute z-10 bg-gray">
+      <ul className="absolute z-50 bg-gray">
         {movies.map((movie) => (
           <Link to={`/movie/${movie.id}`}>
           <li className="p-2  hover:bg-secondary" key={movie.id}>
