@@ -44,7 +44,7 @@ const MovieDetailPage = () => {
           <div className="flex items-center">
           <p>
             <strong>Nota: </strong>
-            <CircularRating rating={movie.vote_average} />
+            <CircularRating rating={movie.vote_average} size={70} />
           </p>
           </div>
         </div>

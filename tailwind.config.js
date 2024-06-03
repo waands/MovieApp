@@ -40,14 +40,20 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-linear': 'linear-gradient(var(--tw-gradient-angle), var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-      })
+      }),
+      lineClamp: {
+        2: '2',
+      },
     },
   },
   variants: {
     extend: {
       backgroundImage: ['hover', 'focus'],
       backdropBlur: ['hover', 'focus'],
+      opacity: ['group-hover'],
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
