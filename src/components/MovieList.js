@@ -42,26 +42,33 @@ function MovieList({ fetchFunction, query }) {
               style={{ transform: `translateX(-${scrollX}px)` }}
             >
               {movies.map((movie) => (
-                <div className="relative flex-shrink-0 lg:m-3 md:m-1.5 " key={movie.id}
-                onMouseEnter={() => setShowTooltip(movie.id)}
-                onMouseLeave={() => setShowTooltip(null)}
+                <div
+                  className="relative flex-shrink-0 lg:m-3 md:m-1.5 "
+                  key={movie.id}
+                  onMouseEnter={() => setShowTooltip(movie.id)}
+                  onMouseLeave={() => setShowTooltip(null)}
                 >
                   <div className="group">
-                  <MovieCard movie={movie} />
-                  {showTooltip === movie.id && <Tooltip movieId={movie.id} onMouseEnter={() => setShowTooltip(null)}/>}
+                    <MovieCard movie={movie} />
+                    {showTooltip === movie.id && (
+                      <Tooltip
+                        movieId={movie.id}
+                        onMouseEnter={() => setShowTooltip(null)}
+                      />
+                    )}
                   </div>
                 </div>
               ))}
             </div>
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-lg"
+              className="absolute -left-2 top-1/2 transform -translate-y-1/2 -translate-x-2 text-gray-500 hover:bg-gradient-to-r from-[#303243b4]  from-15% to-transparent to-85% p-3 h-full rounded-r-full  hover:text-gray-200  hover:font-extrabold"
             >
               &lt;
             </button>
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-lg"
+              className="absolute -right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:bg-gradient-to-l from-[#303243b4] from-15% to-transparent to-85% p-3 h-full rounded-l-full  hover:text-gray-200  hover:font-extrabold"
             >
               &gt;
             </button>

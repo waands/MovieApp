@@ -27,7 +27,16 @@ module.exports = {
       },
       'secondary': '#FF1F8A',
       'bluish-gray': '#303243',
-       gray: '#BBBBBB',
+       'gray': {
+        900: '#121212',
+        800: '#1F1F1F', 
+        700: '#2D2D2D',
+        600: '#3B3B3B', 
+        500: '#BBBBBB',
+        300: '#E5E5E5',
+        200: '#F2F2F2',
+       },
+       
        black: '#000',
        white: '#fff',
     },
