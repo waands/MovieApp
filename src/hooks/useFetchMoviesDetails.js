@@ -11,7 +11,7 @@ const useFetchMoviesDetails = (movieId) => {
       try {
         setLoading(true);
         const response = await tmdbApi.get(`/movie/${movieId}`);
-        console.log("data", response.data);
+        //console.log("data", response.data);
         setMovie(response.data);
         setLoading(false);
       } catch (error) {

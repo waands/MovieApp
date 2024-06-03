@@ -21,7 +21,8 @@ const MovieDetailPage = () => {
           className="absolute inset-0 w-full h-100 blur-3xl brightness-50 saturate-50"
           src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
           alt={movie.title}
-        />
+          //style={{WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)' }}    
+        />  
         <div className="absolute w-full h-full bg-slate-100 opacity-50 color-blue"></div>
       </div>
 
