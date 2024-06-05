@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import useFetchMovies from "../hooks/useFetchMovies";
 import MovieCard from "./MovieCard";
 import Tooltip from "./Tooltip";
+import { MdOutlineArrowLeft, MdOutlineArrowRight } from "react-icons/md";
 
 function MovieList({ fetchFunction, query }) {
   const { movies, loading, error } = useFetchMovies(fetchFunction, query);
@@ -43,7 +44,7 @@ function MovieList({ fetchFunction, query }) {
             >
               {movies.map((movie) => (
                 <div
-                  className="relative flex-shrink-0 lg:m-3 md:m-1.5 "
+                  className="relative flex-shrink-0 lg:m-3 md:m-1.5 m-1"
                   key={movie.id}
                   onMouseEnter={() => setShowTooltip(movie.id)}
                   onMouseLeave={() => setShowTooltip(null)}
@@ -64,13 +65,13 @@ function MovieList({ fetchFunction, query }) {
               onClick={scrollLeft}
               className="absolute -left-2 top-1/2 transform -translate-y-1/2 -translate-x-2 text-gray-500 hover:bg-gradient-to-r from-[#303243b4]  from-15% to-transparent to-85% p-3 h-full rounded-r-full  hover:text-gray-200  hover:font-extrabold"
             >
-              &lt;
+              <MdOutlineArrowLeft className="pr-2 scale-150" size={25}/>
             </button>
             <button
               onClick={scrollRight}
               className="absolute -right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:bg-gradient-to-l from-[#303243b4] from-15% to-transparent to-85% p-3 h-full rounded-l-full  hover:text-gray-200  hover:font-extrabold"
             >
-              &gt;
+              <MdOutlineArrowRight className="pl-2 scale-150" size={25}/>
             </button>
           </div>
         </>

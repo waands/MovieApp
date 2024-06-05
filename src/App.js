@@ -10,9 +10,9 @@ function App() {
   return (
     <Router>
       <div className="bg-gradient-to-b from-[#303243] from-65% to-[#15151D] text-white">
-        
+      <Navbar/>
         <Container>
-          <Navbar/>
+          
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
