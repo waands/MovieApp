@@ -10,6 +10,7 @@ const SearchBar = () => {
   const { movies, loading, error } = useFetchMovies(searchMovies, query);
   const inputRef = useRef(null);
   const containerRef = useRef(null);
+  const [focusedMovie, setFocusedMovie] = useState(null);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -43,7 +44,6 @@ const SearchBar = () => {
 
   const handleSearchIconClick = () => {
     setIsClicked(true);
-
   };
 
   return (
@@ -66,19 +66,45 @@ const SearchBar = () => {
             className="bg-gray-300 text-black px-2 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-300 w-72"
           />
           {error && <p className="text-red-500">{error.message}</p>}
-          <ul className="absolute left-0 right-0 z-50 mt-2 bg-gray-800">
+          <ul className="absolute left-0 right-0 z-50 mt-1 bg-[#282a3a] rounded-b-lg">
             {movies.map((movie) => (
-              <Link to={`/movie/${movie.id}`} key={movie.id}>
-                <li className="p-2 hover:bg-secondary text-white text-sm">
+              <Link
+                to={`/movie/${movie.id}`}
+                key={movie.id}
+                onMouseEnter={() => setFocusedMovie(movie)}
+                onMouseLeave={() => setFocusedMovie(null)}
+              >
+                <li
+                  className={`hover:bg-primary-800 text-white text-sm ${
+                    focusedMovie === movie ? "pt-1.5" : "pt-0"
+                  }`}
+                >
                   <div className="flex inline-flex">
                     {movie.poster_path && (
                       <img
                         src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
                         alt={movie.title}
-                        className="w-15 h-20 mr-2 items-center"
+                        className={`mr-2 items-center ${
+                          focusedMovie === movie ? "w-18 h-23" : "w-15 h-10"
+                        }`}
                       />
                     )}
-                    {movie.title}
+                    <div>
+                      <span className="font-medium">{movie.title}</span>
+                      {focusedMovie === movie && (
+                        <p className="italic mt-1">{movie.original_title}</p>
+                      )}
+                      ({movie.release_date.slice(0, 4)})
+                      {focusedMovie === movie && (
+                        <div className="mt-2">
+                          <p>
+                            Nota:{" "}
+                            <strong>{movie.vote_average.toFixed(1)}</strong>
+                          </p>
+                          {/* Renderize aqui outras informações sobre o filme */}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </li>
               </Link>

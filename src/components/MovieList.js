@@ -39,7 +39,7 @@ function MovieList({ fetchFunction, query }) {
           <div className="relative">
             <div
               ref={containerRef}
-              className="flex no-scrollbar transition-transform duration-300 ease-in-out"
+              className="flex no-scrollbar transition-transform duration-200 ease-in-out"
               style={{ transform: `translateX(-${scrollX}px)` }}
             >
               {movies.map((movie) => (

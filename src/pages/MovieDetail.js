@@ -21,12 +21,11 @@ const MovieDetailPage = () => {
           className="absolute inset-0 w-full h-100 blur-3xl brightness-50 saturate-50"
           src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
           alt={movie.title}
-          //style={{WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)' }}    
+
         />  
-        <div className="absolute w-full h-full bg-slate-100 opacity-50 color-blue"></div>
       </div>
 
-      <div className="z-20 relative flex flex-col md:flex-row p-10 md:p-20">
+      <div className="z-20 relative flex flex-col md:flex-row p-10 md:p-20 ">
         <div className="flex-shrink-0 mb-10 md:mb-0 md:mr-10 w-full md:w-1/3">
           <img
             className="rounded-lg shadow-lg w-full h-auto z-20"
