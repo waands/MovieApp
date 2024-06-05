@@ -46,6 +46,9 @@ const SearchBar = () => {
     setIsClicked(true);
   };
 
+
+
+
   return (
     <div ref={containerRef} className="relative inline-block w-72">
       {!isClicked ? (
@@ -67,34 +70,38 @@ const SearchBar = () => {
           />
           {error && <p className="text-red-500">{error.message}</p>}
           <ul className="absolute left-0 right-0 z-50 mt-1 bg-[#282a3a] rounded-b-lg">
-            {movies.map((movie) => (
-              <Link
-                to={`/movie/${movie.id}`}
-                key={movie.id}
-                onMouseEnter={() => setFocusedMovie(movie)}
-                onMouseLeave={() => setFocusedMovie(null)}
-              >
-                <li
-                  className={`hover:bg-primary-800 text-white text-sm ${
-                    focusedMovie === movie ? "pt-1.5" : "pt-0"
-                  }`}
+            {movies.map((movie) => {
+              const director = movie.credits ? movie.credits.crew.find(member => member.job === "Director")?.name : null;
+              return (
+                <Link
+                  to={`/movie/${movie.id}`}
+                  key={movie.id}
+                  onMouseEnter={() => setFocusedMovie(movie)}
+                  onMouseLeave={() => setFocusedMovie(null)}
                 >
-                  <div className="flex inline-flex">
-                    {movie.poster_path && (
-                      <img
-                        src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
-                        alt={movie.title}
-                        className={`mr-2 items-center ${
-                          focusedMovie === movie ? "w-18 h-23" : "w-15 h-10"
-                        }`}
-                      />
-                    )}
-                    <div>
-                      <span className="font-medium">{movie.title}</span>
+                  <li
+                    className={`hover:bg-primary-800 text-white text-sm ${
+                      focusedMovie === movie ? "pt-1.5" : "pt-0"
+                    }`}
+                  >
+                    <div className="flex inline-flex">
+                      {movie.poster_path && (
+                        <img
+                          src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
+                          alt={movie.title}
+                          className={`mr-2 items-center ${
+                            focusedMovie === movie ? "w-18 h-23" : "w-15 h-10"
+                          }`}
+                        />
+                      )}
+                      <div>
+                        <span className="font-medium">{movie.title} </span>
+                        
                       {focusedMovie === movie && (
                         <p className="italic mt-1">{movie.original_title}</p>
                       )}
                       ({movie.release_date.slice(0, 4)})
+                      <span className="mb-2 block text-gray-500 text-xs">{director || ""}</span>
                       {focusedMovie === movie && (
                         <div className="mt-2">
                           <p>
@@ -108,7 +115,7 @@ const SearchBar = () => {
                   </div>
                 </li>
               </Link>
-            ))}
+            );})}
           </ul>
         </div>
       )}

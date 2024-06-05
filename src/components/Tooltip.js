@@ -4,7 +4,10 @@ import CircularRating from "./CircularRating";
 
 function Tooltip({ movieId, onMouseEnter }) {
   const { movie } = useFetchMoviesDetails(movieId);
-  console.log(movie.genres);
+
+
+  const director = movie.credits ? movie.credits.crew.find(member => member.job === "Director")?.name : null;
+
 
   return (
     <div
@@ -12,6 +15,10 @@ function Tooltip({ movieId, onMouseEnter }) {
       onMouseEnter={onMouseEnter}
     >
       <p className="line-clamp-3 mb-2">{movie.overview}</p>
+
+
+      <p className="mb-2"><strong>Diretor: </strong>{director || ""}</p>
+      
       <p className="mb-2">
         <strong>Lançamento:</strong> {movie.release_date}
       </p>

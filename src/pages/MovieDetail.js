@@ -2,18 +2,26 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchMoviesDetails from "../hooks/useFetchMoviesDetails";
 import CircularRating from '../components/CircularRating';
+import { useEffect } from "react";
 
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { movie, loading, error } = useFetchMoviesDetails(id);
 
-  //console.log("movie", movie);
+
+
+  // Verificar se 'movie.credits' existe antes de tentar acessar 'crew'
+  const director = movie.credits ? movie.credits.crew.find(member => member.job === "Director")?.name : null;
+
+
+  //console.log("director", director);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (!movie) return <p>No movie found</p>;
 
+  
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#303243] from-65% to-[#15151D]  overflow-hidden">
       <div className="relative w-full h-100">
@@ -48,6 +56,9 @@ const MovieDetailPage = () => {
           </div>
         </div>
       </div>
+
+
+
     </div>
   );
 };

@@ -33,7 +33,27 @@ export const searchMovies = async (query) => {
     const sortedResults = data.results.sort((a, b) => b.popularity - a.popularity);
     const topFiveResults = sortedResults.slice(0, 8);
 
-    return topFiveResults;
+    const moviesWithCredits = await Promise.all(
+      topFiveResults.map(async (movie) => {
+        try {
+          const creditsResponse = await tmdbApi.get(`/movie/${movie.id}`, {
+            params: {
+              append_to_response: 'credits',
+            },
+          });
+          return {
+            ...movie,
+            credits: creditsResponse.data.credits,
+          };
+        } catch (error) {
+          console.error(`Erro ao obter créditos para o filme ${movie.id}:`, error);
+          return movie; // Retorna o filme sem os créditos se houver um erro
+        }
+      })
+    );
+
+
+    return moviesWithCredits;
   } catch (error) {
     console.error(error);
     throw error;
