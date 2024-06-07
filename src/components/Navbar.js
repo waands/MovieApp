@@ -28,17 +28,17 @@ function Navbar() {
               </li>
               <li className="transition-colors duration-300 hover:text-white">
                 <Link className="px-6 py-6 " to="/explore">
-                  Explore
+                  Explorar
                 </Link>
               </li>
               <li className="transition-colors duration-300 hover:text-white">
                 <Link className="px-6 py-6" to="/genre">
-                  Genre
+                  Gêneros
                 </Link>
               </li>
               <li className="transition-colors duration-300 hover:text-white">
                 <Link className="px-6 py-6" to="/movies">
-                  Movies
+                  Filmes
                 </Link>
               </li>
             </ul>

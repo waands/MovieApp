@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Longa-Metragem
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Longa-Metragem é um aplicativo de filmes que utiliza a API do TMDB (The Movie Database) para fornecer informações sobre filmes, trailers e elenco. Desenvolvido com React e Tailwind CSS, o aplicativo oferece uma interface intuitiva para os usuários explorarem e descobrirem novos filmes.
 
-## Available Scripts
+## Funcionalidades Principais
 
-In the project directory, you can run:
+- Pesquisa de filmes por título.
+- Visualização de detalhes de filmes, incluindo sinopse, elenco e trailers.
+- Navegação entre diferentes páginas, como "Home", "Explorar", "Gêneros" e "Filmes".
 
-### `npm start`
+## Próximas Implementações
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O aplicativo Longa-Metragem está em constante evolução. Algumas das próximas implementações planejadas incluem:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Página de Explorar**: Uma página dedicada para os usuários explorarem uma variedade de filmes com base em diferentes categorias, como tendências, lançamentos recentes, populares, etc.
 
-### `npm test`
+2. **Página de Gêneros**: Uma página que permite aos usuários navegar por filmes com base em seus gêneros específicos, facilitando a descoberta de filmes de um determinado gênero.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Sistema de Favoritos**: Sincronização com um banco de dados ou localStorage para permitir que os usuários salvem seus filmes favoritos e acessem facilmente sua lista pessoal de filmes preferidos.
 
-### `npm run build`
+4. **Suporte para Modo Claro**: Implementação de um modo claro para oferecer aos usuários uma opção de visualização mais confortável durante o dia.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como Utilizar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para utilizar o aplicativo Longa-Metragem, acesse o seguinte link: [Longa-Metragem](https://longa-metragem.vercel.app/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tecnologias Utilizadas
 
-### `npm run eject`
+- **React**: Biblioteca JavaScript para criação de interfaces de usuário.
+- **Tailwind CSS**: Framework CSS utilitário para design responsivo e desenvolvimento ágil.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contribuindo
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Contribuições são bem-vindas! Se você tem ideias para melhorar o Longa-Metragem ou encontrar problemas, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Licença
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este projeto está licenciado sob a [MIT License](LICENSE).
