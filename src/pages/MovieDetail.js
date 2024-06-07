@@ -46,7 +46,7 @@ const MovieDetailPage = () => {
             ""
           )}
 
-          <p className="mb-4">{movie.overview}</p>
+          <p className="mb-4 font-medium">{movie.overview}</p>
         </div>
       </div>
       <div className="z-20 relative flex flex-col md:flex-row p-10 lg:p-20 md:-mt-12 lg:-mt-28">

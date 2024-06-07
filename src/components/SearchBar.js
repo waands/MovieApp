@@ -46,30 +46,27 @@ const SearchBar = () => {
     setIsClicked(true);
   };
 
-
-
-
   return (
-    <div ref={containerRef} className="relative inline-block w-72">
+    <div ref={containerRef} className="relative inline-block md:w-72 w-56">
       {!isClicked ? (
         <button
-          className="pt-1 transition-all text-gray-500 duration-300 ml-64 hover:text-white"
+          className="pt-1 transition-all text-gray-500 duration-300 md:ml-64 hover:text-white sm:right-0"
           onClick={handleSearchIconClick}
         >
           <IoSearch size={20} />
         </button>
       ) : (
-        <div className="relative">
+        <div className="relative sm:ml-10">
           <input
             type="text"
             value={query}
             placeholder="Search"
             onChange={handleInputChange}
             ref={inputRef}
-            className="bg-gray-300 text-black px-2 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-300 w-72"
+            className="bg-gray-300 text-black px-2 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-300 w-full"
           />
           {error && <p className="text-red-500">{error.message}</p>}
-          <ul className="absolute left-0 right-0 z-50 mt-1 bg-[#282a3a] rounded-b-lg">
+          <ul className="absolute left-0 right-0 z-50 mt-2 bg-[#212331] rounded-b-lg">
             {movies.map((movie) => {
               const director = movie.credits ? movie.credits.crew.find(member => member.job === "Director")?.name : null;
               return (
@@ -108,7 +105,6 @@ const SearchBar = () => {
                             Nota:{" "}
                             <strong>{movie.vote_average.toFixed(1)}</strong>
                           </p>
-                          {/* Renderize aqui outras informações sobre o filme */}
                         </div>
                       )}
                     </div>
