@@ -1,6 +1,5 @@
 import React from "react";
 import useFetchMoviesDetails from "../hooks/useFetchMoviesDetails";
-import CircularRating from "./CircularRating";
 
 function Tooltip({ movieId, onMouseEnter }) {
   const { movie } = useFetchMoviesDetails(movieId);

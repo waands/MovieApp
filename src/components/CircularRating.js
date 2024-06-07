@@ -32,7 +32,10 @@ const CircularRating = ({ rating }) => {
           transform="rotate(-90 60 60)"
         />
       </svg>
-      <span className="absolute text-xl font-bold text-white">{rating.toFixed(1)}</span>
+      <span className="absolute text-xl font-bold text-white">{rating.toFixed(1)}
+      <span  className="font-normal" style={{fontSize: '0.5rem'}}>/10</span>
+      </span>
+      
     </div>
   );
 };
