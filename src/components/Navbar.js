@@ -15,9 +15,9 @@ function Navbar() {
       <div className="2xl:mx-80 lg:mx-25 md:mx-20">
         <nav className="flex justify-between items-center py-4 md:min-h-20 relative">
           <div className="ml-6 max-w-14 lg:min-w-14">
-            <Link to="/">
+            
               <IoTicket size="3em" alt="logo" color="#FF1F8A" />
-            </Link>
+            
           </div>
           <div className="hidden md:flex justify-center flex-grow">
             <ul className="flex -ml-8 text-gray-500 text-sm">
