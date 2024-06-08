@@ -47,7 +47,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative inline-block md:w-72 w-56">
+    <div ref={containerRef} className="relative inline-block md:w-72 w-60">
       {!isClicked ? (
         <button
           className="pt-1 transition-all text-gray-500 duration-300 md:ml-64 hover:text-white sm:right-0"
