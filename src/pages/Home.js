@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className='mt-6'>
       <h1 className='text-xl font-bold '>Populares Agora</h1>
-      <MovieList fetchFunction={getPopularMovies} query={null} />
+      <MovieList className='z-10' fetchFunction={getPopularMovies} query={null} />
       
       <h1 className='text-xl font-bold '>Mais Bem Avaliados</h1>
       <MovieList fetchFunction={getBestMovies} query={null} />

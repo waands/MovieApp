@@ -1,7 +1,7 @@
 import React from "react";
 import useFetchMoviesDetails from "../hooks/useFetchMoviesDetails";
 
-function Tooltip({ movieId, onMouseEnter }) {
+function Tooltip({ movieId, onMouseEnter, position }) {
   const { movie } = useFetchMoviesDetails(movieId);
 
 
@@ -9,8 +9,14 @@ function Tooltip({ movieId, onMouseEnter }) {
 
 
   return (
+    //se tiver espaço na tela, o tooltip aparece do lado direito do card
+    //se não, ele aparece do lado esquerdo
+    //a classe "left-full" faz o tooltip aparecer do lado direito
+    //a classe "right-full" faz o tooltip aparecer do lado esquerdo
+    <div >
+      
     <div
-      className="absolute z-50 left-full top-1/2 transform -translate-y-1/2 mb-2 p-2 w-64 text-sm text-white bg-gray-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-3"
+      className={`tooltip ${position === 'right' ? 'left-full ml-3' : 'right-full mr-3'}  absolute z-50 top-1/2 -translate-y-1/2 transform mb-2 p-2 w-64 text-sm text-white bg-gray-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 `}
       onMouseEnter={onMouseEnter}
     >
       <p className="line-clamp-3 mb-2">{movie.overview}</p>
@@ -34,6 +40,7 @@ function Tooltip({ movieId, onMouseEnter }) {
             </span>
           ))
         : null}
+    </div>
     </div>
   );
 }
