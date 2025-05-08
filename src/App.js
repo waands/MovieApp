@@ -19,7 +19,7 @@ function App() {
             {" "}
             {/* Conteúdo principal precisa de z-index */}
             <Navbar />
-            <Container className="overflow-x-auto" maxWidth="xl">
+            <Container className="overflow-visible" maxWidth="xl">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/movie/:id" element={<MovieDetail />} />

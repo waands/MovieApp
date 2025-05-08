@@ -1,19 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // Importar useLocation
 import SearchBar from "./SearchBar";
 import { IoTicket } from "react-icons/io5";
 
 function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation(); // Obter a localização atual
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
+  // Verificar se a rota atual é uma página de detalhes do filme
+  const isMovieDetailPage = location.pathname.startsWith("/movie/");
+
+  // Definir classes condicionalmente
+  const navbarClasses = `
+    relative z-50 font-sans 
+    ${
+      isMovieDetailPage
+        ? "bg-background/30 relative z-50 hover:bg-background/100 transition duration-300 ease-in-out"
+        : "bg-background relative z-50"
+    } 
+  `; // Adiciona opacidade e blur se for página de filme
+
   return (
-    <div className="font-sans bg-background">
-      {" "}
-      {/* Updated background */}
+    <div className={navbarClasses.trim()}>
       <div className="2xl:mx-80 lg:mx-25 md:mx-20">
         <nav className="flex justify-between items-center py-4 md:min-h-20 relative">
           <div className="ml-6 max-w-14 lg:min-w-14">
