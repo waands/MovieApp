@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const CircularRating = ({ rating }) => {
   const radius = 50;
@@ -32,10 +32,12 @@ const CircularRating = ({ rating }) => {
           transform="rotate(-90 60 60)"
         />
       </svg>
-      <span className="absolute text-xl font-bold text-white">{rating.toFixed(1)}
-      <span  className="font-normal" style={{fontSize: '0.5rem'}}>/10</span>
+      <span className="absolute text-xl font-bold text-headline">
+        {rating.toFixed(1)}
+        <span className="font-normal" style={{ fontSize: "0.5rem" }}>
+          /10
+        </span>
       </span>
-      
     </div>
   );
 };

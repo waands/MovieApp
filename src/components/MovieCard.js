@@ -45,12 +45,16 @@ function MovieCard({ movie }) {
           )}
         </div>
 
-        <h3 className="text-sm mt-1 md:text-md font-semibold line-clamp-2 w-full h-10 md:h-12 mb-1">
+        <h3 className="text-sm mt-1 md:text-md font-semibold line-clamp-2 w-full h-10 md:h-12 mb-1 text-headline">
+          {" "}
+          {/* text-headline */}
           {fetchedMovie.title}
         </h3>
 
         <div className="flex w-full justify-start space-x-8 -mt-2">
-          <span className="text-sm text-gray-500">
+          <span className="text-xs text-paragraph">
+            {" "}
+            {/* text-paragraph */}
             {loading ? (
               <Skeleton count={1} />
             ) : (

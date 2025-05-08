@@ -11,7 +11,9 @@ function Navbar() {
   };
 
   return (
-    <div className="font-sans bg-[#212331]">
+    <div className="font-sans bg-background">
+      {" "}
+      {/* Updated background */}
       <div className="2xl:mx-80 lg:mx-25 md:mx-20">
         <nav className="flex justify-between items-center py-4 md:min-h-20 relative">
           <div className="ml-6 max-w-14 lg:min-w-14">
@@ -20,23 +22,33 @@ function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex justify-center flex-grow">
-            <ul className="flex -ml-8 text-gray-500 text-sm">
-              <li className="transition-colors duration-300 hover:text-white">
+            <ul className="flex -ml-8 text-paragraph text-sm">
+              {" "}
+              {/* Updated text color */}
+              <li className="transition-colors duration-300 hover:text-headline">
+                {" "}
+                {/* Updated hover text color */}
                 <Link className="px-6 py-6" to="/">
                   Home
                 </Link>
               </li>
-              <li className="transition-colors duration-300 hover:text-white">
+              <li className="transition-colors duration-300 hover:text-headline">
+                {" "}
+                {/* Updated hover text color */}
                 <Link className="px-6 py-6 " to="/explore">
                   Explorar
                 </Link>
               </li>
-              <li className="transition-colors duration-300 hover:text-white">
+              <li className="transition-colors duration-300 hover:text-headline">
+                {" "}
+                {/* Updated hover text color */}
                 <Link className="px-6 py-6" to="/genre">
                   Gêneros
                 </Link>
               </li>
-              <li className="transition-colors duration-300 hover:text-white">
+              <li className="transition-colors duration-300 hover:text-headline">
+                {" "}
+                {/* Updated hover text color */}
                 <Link className="px-6 py-6" to="/movies">
                   Filmes
                 </Link>
@@ -73,12 +85,14 @@ function Navbar() {
             </button>
           </div>
           {showMenu && (
-            <div className="absolute top-full md:hidden bg-[#212331] rounded-lg mt-2 shadow-md mr-6 z-10 ml-12 z-50">
+            <div className="absolute top-full md:hidden bg-background rounded-lg mt-2 shadow-md mr-6 z-10 ml-12 z-50">
+              {" "}
+              {/* Updated background */}
               <ul className="py-2">
                 <li>
                   <Link
                     to="/"
-                    className="block px-4 py-2 text-white hover:bg-gray-700"
+                    className="block px-4 py-2 text-headline hover:bg-gray-700" /* Updated text color */
                   >
                     Home
                   </Link>
@@ -86,7 +100,7 @@ function Navbar() {
                 <li>
                   <Link
                     to="/explore"
-                    className="block px-4 py-2 text-white hover:bg-gray-700"
+                    className="block px-4 py-2 text-headline hover:bg-gray-700" /* Updated text color */
                   >
                     Explore
                   </Link>
@@ -94,7 +108,7 @@ function Navbar() {
                 <li>
                   <Link
                     to="/genre"
-                    className="block px-4 py-2 text-white hover:bg-gray-700"
+                    className="block px-4 py-2 text-headline hover:bg-gray-700" /* Updated text color */
                   >
                     Genre
                   </Link>
@@ -102,7 +116,7 @@ function Navbar() {
                 <li>
                   <Link
                     to="/movies"
-                    className="block px-4 py-2 text-white hover:bg-gray-700"
+                    className="block px-4 py-2 text-headline hover:bg-gray-700" /* Updated text color */
                   >
                     Movies
                   </Link>

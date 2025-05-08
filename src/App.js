@@ -11,8 +11,9 @@ function App() {
   return (
     <SkeletonTheme baseColor="#757575" highlightColor="#505050">
       <Router>
-        <div className="bg-gradient-to-b from-[#303243] from-50% to-[#1F1D31] text-white overflow-auto">
-          <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none"></div>
+        <div className="relative bg-gradient-to-b from-[#303243] from-50% to-[#1F1D31] text-headline min-h-screen overflow-auto">
+          {/* Camada de Ruído: posicionada absolutamente para cobrir, com opacidade */}
+          <div className="absolute inset-0 bg-noise opacity-15 pointer-events-none z-0"></div>
           {/* Ajuste a opacidade */}
           <div className="relative z-10">
             {" "}

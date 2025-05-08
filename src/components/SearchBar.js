@@ -50,10 +50,10 @@ const SearchBar = () => {
     <div ref={containerRef} className="relative inline-block md:w-72 w-60">
       {!isClicked ? (
         <button
-          className="pt-1 transition-all text-gray-500 duration-300 md:ml-64 hover:text-white sm:right-0"
+          className="pt-1 transition-all text-button duration-300 md:ml-64 hover:text-headline sm:right-0"
           onClick={handleSearchIconClick}
         >
-          <IoSearch size={20} />
+          <IoSearch size={20} strokeWidth={25} />
         </button>
       ) : (
         <div className="relative sm:ml-10">
@@ -63,12 +63,16 @@ const SearchBar = () => {
             placeholder="Search"
             onChange={handleInputChange}
             ref={inputRef}
-            className="bg-gray-300 text-black px-2 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 transition-all duration-300 w-full"
+            className="bg-gray-300 text-button-text px-2 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-button focus:ring-opacity-50 transition-all duration-300 w-full"
           />
           {error && <p className="text-red-500">{error.message}</p>}
-          <ul className="absolute left-0 right-0 z-50 mt-2 bg-[#212331] rounded-b-lg">
+          <ul className="absolute left-0 right-0 z-50 mt-2 bg-background rounded-b-lg">
+            <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-0"></div>
             {movies.map((movie) => {
-              const director = movie.credits ? movie.credits.crew.find(member => member.job === "Director")?.name : null;
+              const director = movie.credits
+                ? movie.credits.crew.find((member) => member.job === "Director")
+                    ?.name
+                : null;
               return (
                 <Link
                   to={`/movie/${movie.id}`}
@@ -77,7 +81,7 @@ const SearchBar = () => {
                   onMouseLeave={() => setFocusedMovie(null)}
                 >
                   <li
-                    className={`hover:bg-primary-800 text-white text-sm ${
+                    className={`hover:bg-sec-background text-headline text-sm ${
                       focusedMovie === movie ? "pt-1.5" : "pt-0"
                     }`}
                   >
@@ -92,26 +96,36 @@ const SearchBar = () => {
                         />
                       )}
                       <div>
-                        <span className="font-medium">{movie.title} </span>
-                        
-                      {focusedMovie === movie && (
-                        <p className="italic mt-1">{movie.original_title}</p>
-                      )}
-                      ({movie.release_date.slice(0, 4)})
-                      <span className="mb-2 block text-gray-500 text-xs">{director || ""}</span>
-                      {focusedMovie === movie && (
-                        <div className="mt-2">
-                          <p>
-                            Nota:{" "}
-                            <strong>{movie.vote_average.toFixed(1)}</strong>
+                        <span
+                          className={`pr-1 ${
+                            focusedMovie === movie ? "font-bold" : "font-medium"
+                          }`}
+                        >
+                          {movie.title}{" "}
+                        </span>
+                        {focusedMovie === movie && (
+                          <p className="italic mt-1 pr-1">
+                            {movie.original_title}
                           </p>
-                        </div>
-                      )}
+                        )}
+                        ({movie.release_date.slice(0, 4)})
+                        <span className="mb-2 block text-paragraph text-xs">
+                          {director || ""}
+                        </span>
+                        {focusedMovie === movie && (
+                          <div className="mt-2">
+                            <p>
+                              Nota:{" "}
+                              <strong>{movie.vote_average.toFixed(1)}</strong>
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </Link>
-            );})}
+                  </li>
+                </Link>
+              );
+            })}
           </ul>
         </div>
       )}

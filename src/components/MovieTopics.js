@@ -15,10 +15,11 @@ function MovieTopics({ movie }) {
     },
     {
       title: "Lançamento",
-      content: `${movie.release_date.slice(8, 10)}/${movie.release_date.slice(
-        5,
-        7
-      )}/${movie.release_date.slice(0, 4)}` || "Desconhecido",
+      content:
+        `${movie.release_date.slice(8, 10)}/${movie.release_date.slice(
+          5,
+          7
+        )}/${movie.release_date.slice(0, 4)}` || "Desconhecido",
     },
     {
       title: "Duração",
@@ -28,7 +29,7 @@ function MovieTopics({ movie }) {
       title: "Gêneros",
       content: movie.genres
         ? movie.genres.map((genre) => (
-            <span className="inline-flex bg-primary-800 text-white rounded-full mr-1 mt-1 px-2">
+            <span className="inline-flex bg-button text-button-text rounded-full mr-1 mt-1 px-2">
               {genre.name}
             </span>
           ))
@@ -36,9 +37,9 @@ function MovieTopics({ movie }) {
     },
     {
       title: "Produção",
-      content: movie.production_companies
-        .map((company) => company.name)
-        .join(", ") || "Desconhecido",
+      content:
+        movie.production_companies.map((company) => company.name).join(", ") ||
+        "Desconhecido",
     },
     {
       title: "Título Original",
@@ -46,25 +47,35 @@ function MovieTopics({ movie }) {
     },
     {
       title: "Orçamento",
-      content: "$ " + movie.budget.toLocaleString( {
-        style: "currency",
-      }) || "Desconhecido",
+      content:
+        "$ " +
+          movie.budget.toLocaleString({
+            style: "currency",
+          }) || "Desconhecido",
     },
     {
       title: "Receita",
-      content: "$ " + movie.revenue.toLocaleString( {
-        style: "currency",
-      }) || "Desconhecido",
+      content:
+        "$ " +
+          movie.revenue.toLocaleString({
+            style: "currency",
+          }) || "Desconhecido",
     },
   ];
 
   return (
-    <div className=" p-4 text-white  h-auto z-20 mx-auto rounded-lg bg-[#21233146] text-sm">
+    <div className=" p-4 text-headline  h-auto z-20 mx-auto rounded-lg bg-[#21233146] text-sm">
+      {" "}
+      {/* text-headline */}
       <ul className="">
         {topics.map((topic, index) => (
           <li key={index} className="mb-4">
-            <h3 className="text-lg font-semibold">{topic.title}</h3>
-            <p>{topic.content}</p>
+            <h3 className="text-lg font-semibold text-headline">
+              {topic.title}
+            </h3>{" "}
+            {/* text-headline */}
+            <p className="text-paragraph">{topic.content}</p>{" "}
+            {/* text-paragraph */}
           </li>
         ))}
       </ul>
