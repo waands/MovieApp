@@ -44,12 +44,18 @@ function MovieCard({ movie }) {
             />
           )}
         </div>
-        <h1 className="text-md font-bold mt-2 line-clamp-2 w-full h-12">
-          {loading ? <Skeleton count={2}/> : fetchedMovie.title}
-        </h1>
-        <div className="flex w-full justify-start space-x-8">
+
+        <h3 className="text-sm mt-1 md:text-md font-semibold line-clamp-2 w-full h-10 md:h-12 mb-1">
+          {fetchedMovie.title}
+        </h3>
+
+        <div className="flex w-full justify-start space-x-8 -mt-2">
           <span className="text-sm text-gray-500">
-            {loading ? <Skeleton count={1}/> : fetchedMovie.release_date.split("-")[0]}
+            {loading ? (
+              <Skeleton count={1} />
+            ) : (
+              fetchedMovie.release_date.split("-")[0]
+            )}
           </span>
         </div>
       </div>

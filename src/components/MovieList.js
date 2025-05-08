@@ -36,7 +36,7 @@ function MovieList({ fetchFunction, query }) {
   }, [scrollX]);
 
   return (
-    <div className="relative mx-auto px-4 py-2 overflow-hidden ">
+    <div className="relative mx-auto px-4 -mt-4 overflow-hidden ">
       {error ? (
         <div>Error ao carregar filmes: {error.message}</div>
       ) : (
