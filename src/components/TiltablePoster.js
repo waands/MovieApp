@@ -18,11 +18,11 @@ function TiltablePoster({ imageUrl, altText, movieTitle }) {
     const mouseY = e.clientY - top;
 
     // Posição do mouse do centro (-0.5 a 0.5)
-    const xPct = mouseX / width - 0.5; // -0.5 (esquerda) a 0.5 (direita)
-    const yPct = mouseY / height - 0.5; // -0.5 (topo) a 0.5 (base)
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
 
-    // Calcular rotação - invertemos yPct para um efeito mais natural (mouse no topo, card inclina para "trás" no topo)
-    const rotateY = xPct * MAX_ROTATION * 2; // Multiplicamos por 2 porque o range de xPct é 1 (de -0.5 a 0.5)
+    // Calcula a rotação com base na posição do mouse
+    const rotateY = xPct * MAX_ROTATION * 2;
     const rotateX = -yPct * MAX_ROTATION * 2;
 
     setRotate({ x: rotateX, y: rotateY });
@@ -38,20 +38,16 @@ function TiltablePoster({ imageUrl, altText, movieTitle }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-full cursor-pointer" // Ajuste w-full e h-full conforme necessário ou passe props de tamanho
+      className="relative w-full h-full cursor-pointer object-cover"
       style={{
-        transformStyle: "preserve-3d", // Importante para que as rotações 3D funcionem
-        // Perspective pode ser no pai direto do elemento que gira ou nele mesmo se for o "mundo 3D"
+        transformStyle: "preserve-3d",
         perspective: "2000px", // Quão "profundo" o efeito 3D parece
       }}
     >
       <div
         className="w-full h-full rounded-lg overflow-hidden shadow-xl transition-transform duration-100 ease-out" // O card interno que realmente gira
         style={{
-          transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) translateZ(20px)`, // translateZ(20px) adiciona um leve "pop"
-          // Adicione um translateZ menor se não quiser o "pop", ou remova-o
-          // transition: 'transform 0.05s linear', // Transição rápida para o movimento
-          // A transition-transform duration-100 ease-out acima é para o onMouseLeave
+          transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) translateZ(20px)`,
         }}
       >
         <img
@@ -68,23 +64,11 @@ function TiltablePoster({ imageUrl, altText, movieTitle }) {
             }% ${
               (-rotate.x / (MAX_ROTATION * 2) + 0.5) * 100
             }%, rgba(255,255,255,0.3), transparent 50%)`,
-            mixBlendMode: "overlay", // Ou 'soft-light', experimente
-            pointerEvents: "none", // Para não interferir no mouseMove do card
+            mixBlendMode: "overlay",
+            pointerEvents: "none",
           }}
         />
       </div>
-      {/* Opcional: Adicionar texto ou outros elementos que se movem de forma diferente dentro do card 3D */}
-      {/*
-      <div
-        className="absolute bottom-4 left-4 text-white text-shadow-lg"
-        style={{
-          transform: `translateZ(50px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`, // Efeito de profundidade maior para o texto
-          pointerEvents: 'none',
-        }}
-      >
-        {movieTitle}
-      </div>
-      */}
     </div>
   );
 }
