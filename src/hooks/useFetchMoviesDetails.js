@@ -10,8 +10,10 @@ const useFetchMoviesDetails = (movieId) => {
     const fetchMovies = async () => {
       try {
         setLoading(true);
-        const response = await tmdbApi.get(`/movie/${movieId}?append_to_response=credits,videos`);
-        console.log("data", response.data);
+        const response = await tmdbApi.get(
+          `/movie/${movieId}?append_to_response=credits,videos`
+        );
+        //console.log("data", response.data);
         setMovie(response.data);
         setLoading(false);
       } catch (error) {

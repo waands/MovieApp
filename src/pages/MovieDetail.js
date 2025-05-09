@@ -35,7 +35,7 @@ const MovieDetailPage = () => {
   useEffect(() => {
     if (textRef.current && posterHeight > 0) {
       const fullHeight = textRef.current.scrollHeight;
-      setNeedsTruncate(fullHeight > posterHeight);
+      setNeedsTruncate(fullHeight > posterHeight / 3);
     }
   }, [movie.overview, posterHeight]);
 
@@ -122,8 +122,8 @@ const MovieDetailPage = () => {
           h-full
           object-fill
           object-center
-          brightness-[0.3]
-          saturate-[0.3]
+          brightness-[0.45]
+          saturate-[0.45]
           sm:blur-3xl          
           
         "
@@ -132,18 +132,34 @@ const MovieDetailPage = () => {
         />
       </div>
       <div className="z-20 relative flex flex-col md:flex-row p-10 lg:p-20 md:-mt-0 lg:-mt-12">
-        <div className="flex-shrink-0 mb-10 md:mb-0 md:mr-10 w-full md:w-1/5 aspect-[2/3] md:self-start">
+        <div
+          className="flex-shrink-0 mb-10 md:mb-0 md:mr-10 w-full md:w-1/5 aspect-[2/3] md:self-start"
+          ref={posterRef}
+        >
           {/* Pequena margem interna para o poster não colar nas bordas do fundo */}
           <div className="hidden md:block">
             <TiltablePoster
               imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               altText={movie.title}
               movieTitle={movie.title}
+              onLoad={() => {
+                if (posterRef.current) {
+                  setPosterHeight(
+                    posterRef.current.getBoundingClientRect().height
+                  );
+                }
+              }}
             />
           </div>
           <img
+            onLoad={() => {
+              if (posterRef.current) {
+                setPosterHeight(
+                  posterRef.current.getBoundingClientRect().height
+                );
+              }
+            }}
             className="md:hidden block w-full h-full object-cover rounded-lg shadow-lg"
-            ref={posterRef}
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
@@ -152,7 +168,6 @@ const MovieDetailPage = () => {
           className={`text-headline flex flex-col justify-center w-full md:w-2/3 xl:pt-[20vh]`}
           // Adiciona um padding superior para o texto não colar no poster
         >
-          {console.log(movie.overview.length)}
           <h1 className="text-3xl md:text-5xl font-bold mb-1">{movie.title}</h1>
 
           {movie.tagline ? (
@@ -163,7 +178,70 @@ const MovieDetailPage = () => {
             ""
           )}
 
-          <p className="mb-4 font-medium">{movie.overview}</p>
+          <div className="relative mb-6 ">
+            {" "}
+            {/* Container da sinopse */}
+            <div
+              ref={textRef}
+              className="overflow-hidden transition-all duration-500 ease-in-out"
+              style={{
+                // Se posterHeight ainda não foi medido ou é muito pequeno,
+                // podemos usar um fallback razoável para a altura truncada.
+                // Ou garantir que não aplique maxHeight se posterHeight for 0.
+                maxHeight:
+                  isExpanded || posterHeight === 0 // se posterHeight for 0, não restrinja
+                    ? textRef.current
+                      ? `${textRef.current.scrollHeight}px`
+                      : "none" // Altura total do conteúdo ou 'none' se ref não pronta
+                    : `${posterHeight / 6}px`,
+              }}
+            >
+              <p className="text-sm md:text-base font-medium leading-relaxed text-slate-200">
+                {" "}
+                {/* Cor do texto exemplo */}
+                {movie.overview || "Sinopse não disponível."}
+              </p>
+            </div>
+            {/* Lógica do Botão "Leia mais" / "Leia menos" e Gradiente */}
+            {/* Renderiza o botão apenas se for necessário truncar */}
+            {needsTruncate && (
+              <div className="relative">
+                {" "}
+                {/* Envolve gradiente e botão para posicionamento */}
+                {/* Gradiente de Fade (somente quando NÃO expandido) */}
+                {!isExpanded && (
+                  <div
+                    className="absolute -top-16 sm:-top-20 bottom-0 left-0 w-full h-20 sm:h-24 pointer-events-none"
+                    style={{
+                      // Substitua '#303243' pela cor de fundo REAL da área da sinopse
+                      // Se for o `bg-gradient-to-b from-[#303243] to-[#15151D]` do pai, pode ser um desafio
+                      // Uma cor sólida como '#222430' (intermediária do seu gradiente) pode funcionar
+                      // Idealmente, o container IMEDIATO da sinopse teria um fundo sólido ou o gradiente terminaria antes dele.
+                      // Vamos assumir que o fundo atrás da sinopse se aproxima de '#303243' ou do tom mais escuro do seu gradiente.
+                      background: `linear-gradient(to bottom, transparent 0%, rgba(48, 50, 67, 0) 10%, rgba(48, 50, 67, 0.8) 60%, #303243 95%)`,
+                      // Ou, se o fundo for mais para #15151D nessa altura:
+                      // background: `linear-gradient(to bottom, transparent 0%, rgba(21, 21, 29, 0) 10%, rgba(21, 21, 29, 0.8) 60%, #15151D 95%)`,
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+                {/* Botão Centralizado */}
+                <div className={`flex justify-center `}>
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)} // Alterna o estado
+                    className="px-5 py-2 text-xs sm:text-sm font-semibold text-slate-100 
+                               bg-slate-700/60 hover:bg-slate-600/80 backdrop-blur-sm 
+                               rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 
+                               transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    {isExpanded ? "Leia menos" : "Leia mais"}
+                  </button>
+                </div>
+              </div>
+            )}
+            {/* Se não precisa truncar, mas temos overview, garante algum espaço abaixo */}
+            {!needsTruncate && movie.overview && <div className="pb-2"></div>}
+          </div>
         </div>
       </div>
       <div className="z-20 relative flex flex-col md:flex-row p-10 lg:p-20 md:-mt-12 lg:-mt-28">
